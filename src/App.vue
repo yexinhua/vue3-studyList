@@ -53,7 +53,8 @@ const options = [
   },
 ]
 
-function getMaxId() {  
+//获取数组对象tableData中的最大id值
+function getMaxId() {    
   let maxId = 0;  
   for (let i = 0; i < tableData.value.length; i++) {  
     if (tableData.value[i].id > maxId) {  
@@ -64,7 +65,9 @@ function getMaxId() {
 }  
 
 const addRow = ()=>{
-  form.id = getMaxId()+1;
+  //nextId = getMaxId()+1 //已弃用，改用 扩展运算符+map方法+Math.max
+  let nextId = Math.max(...tableData.value.map(item=>item.id)) + 1
+  form.id = nextId;
   // 将新数据添加到tableData中  
   tableData.value.push(form);  
 }
